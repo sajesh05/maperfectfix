@@ -6,6 +6,8 @@ import {
   FaInstagram,
   FaFacebookF,
 } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ContactForm = () => {
   const handleSubmit = async (e) => {
@@ -25,83 +27,73 @@ const ContactForm = () => {
       const result = await response.json();
       if (!response.ok) throw new Error(result.message);
 
-      alert(result.message);
+      toast.success(result.message);
       form.reset();
     } catch (err) {
       console.error(err);
-      alert(err.message || "Failed to submit form.");
+      toast.error(err.message);
     }
   };
 
   return (
-    <section className="w-full bg-orange-100 py-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="w-full bg-white pt-16 sm:pt-20 md:pt-24 pb-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
 
-        <div className="grid grid-cols-1 mt-10 md:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-start">
 
           {/* LEFT CONTENT */}
           <div className="text-center md:text-left">
-            <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-4xl font-bold text-blue-900 mb-8 mt-8 sm:mb-8">
               Get in Touch
             </h2>
 
-            <p className="text-blue-600 max-w-md mx-auto md:mx-0 leading-relaxed">
+            <p className="text-blue-700 text-base sm:text-lg max-w-md mx-auto md:mx-0 leading-relaxed">
               Have a question or want to work together? Fill out the form and our
               team will get back to you as soon as possible.
             </p>
 
             {/* CONTACT INFO */}
-            <div className="mt-10 space-y-3 text-sm">
-              <div className="flex items-center justify-center md:justify-start gap-3 text-blue-500">
+            <div className="mt-6 sm:mt-8 space-y-2 sm:space-y-3 text-sm sm:text-base">
+              <div className="flex items-center justify-center md:justify-start gap-2 sm:gap-3 text-blue-500">
                 <FaPhoneAlt className="text-blue-800" />
                 <span>+971 55 789 3945</span>
               </div>
 
-              <div className="flex items-center justify-center md:justify-start gap-3 text-blue-500">
+              <div className="flex items-center justify-center md:justify-start gap-2 sm:gap-3 text-blue-500">
                 <FaEnvelope className="text-blue-800" />
-                <span>ashokbekalfort@yahoo.com</span>
+                <span>contact@maperfectfix.com</span>
               </div>
 
-              <div className="flex items-center justify-center md:justify-start gap-3 text-blue-500">
+              <div className="flex items-center justify-center md:justify-start gap-2 sm:gap-3 text-blue-500">
                 <FaGlobe className="text-blue-800" />
-                <span>www.forever.com</span>
+                <span>www.maperfectfix.com</span>
               </div>
             </div>
 
             {/* SOCIAL */}
-            <div className="mt-10">
-              <h3 className="font-semibold text-blue-800 text-lg mb-3">
+            <div className="mt-6 sm:mt-8">
+              <h3 className="font-semibold text-blue-800 text-lg sm:text-xl mb-2 sm:mb-3">
                 FOLLOW US
               </h3>
-              <div className="flex justify-center md:justify-start gap-5 text-xl">
-                <a
-                  href="https://facebook.com"
-                  className="text-blue-800 hover:text-blue-400 transition"
-                >
-                  <FaFacebookF />
-                </a>
-                <a
-                  href="https://instagram.com"
-                  className="text-blue-800 hover:text-pink-600 transition"
-                >
-                  <FaInstagram />
-                </a>
+              <div className="flex justify-center md:justify-start gap-4 sm:gap-5 text-xl sm:text-2xl">
+                <div className="text-blue-800"><FaFacebookF /></div>
+                <div className="text-blue-800"><FaInstagram /></div>
               </div>
             </div>
           </div>
 
           {/* RIGHT FORM */}
-          <div className="bg-white border border-orange-200 shadow-lg rounded-xl p-6 sm:p-8">
-            <form className="space-y-8" onSubmit={handleSubmit}>
+          <div className="bg-[#0a1f44] border border-white shadow-lg rounded-xl mt-8 p-4 sm:p-6 md:p-8">
+            <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
 
               {/* NAME */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-white sm:gap-4">
                 <FloatingInput label="First Name *" name="firstName" required />
                 <FloatingInput label="Last Name" name="lastName" />
               </div>
 
               {/* EMAIL & PHONE */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 text-white gap-3 text-whitesm:gap-4">
                 <FloatingInput
                   label="Email Address *"
                   name="email"
@@ -112,14 +104,16 @@ const ContactForm = () => {
               </div>
 
               {/* MESSAGE */}
-              <FloatingTextarea label="Your Message *" name="message" required />
+              <div className="text-white">
+                <FloatingTextarea label="Your Message *" name="message" required />
+              </div>
 
               {/* SUBMIT */}
               <div className="text-center md:text-left">
                 <button
                   type="submit"
-                  className="px-12 py-3 rounded-full text-sm font-medium text-white
-                             bg-gradient-to-r from-orange-400 to-pink-500
+                  className="px-10 sm:px-12 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium text-white
+                             bg-gradient-to-r from-blue-500 to-yellow-500
                              hover:scale-105 transition-transform duration-300"
                 >
                   Submit
@@ -128,8 +122,20 @@ const ContactForm = () => {
 
             </form>
           </div>
+
         </div>
+
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="light"
+      />
     </section>
   );
 };
@@ -144,12 +150,12 @@ const FloatingInput = ({ label, name, type = "text", required }) => (
       required={required}
       placeholder=" "
       className="peer w-full border-b border-gray-300 bg-transparent
-                 focus:border-orange-500 outline-none py-3 text-sm"
+                 focus:border-orange-500 outline-none py-2 sm:py-3 text-sm sm:text-base"
     />
     <label
       htmlFor={name}
-      className="absolute left-0 -top-3 text-gray-500 text-sm
-                 peer-placeholder-shown:top-3
+      className="absolute left-0 -top-3 text-white text-sm
+                 peer-placeholder-shown:top-2
                  peer-focus:-top-3 peer-focus:text-xs
                  transition-all"
     >
@@ -167,13 +173,13 @@ const FloatingTextarea = ({ label, name, required }) => (
       rows="4"
       required={required}
       placeholder=" "
-      className="peer w-full border-b border-gray-300 bg-transparent
-                 focus:border-orange-500 outline-none py-3 text-sm resize-none"
+      className="peer w-full border-b border-white bg-transparent
+                 focus:border-orange-500 outline-none py-2 sm:py-3 text-sm sm:text-base resize-none"
     />
     <label
       htmlFor={name}
-      className="absolute left-0 -top-3 text-gray-500 text-sm
-                 peer-placeholder-shown:top-3
+      className="absolute left-0 -top-3 text-white text-sm
+                 peer-placeholder-shown:top-2
                  peer-focus:-top-3 peer-focus:text-xs
                  transition-all"
     >

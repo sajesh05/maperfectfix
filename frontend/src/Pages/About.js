@@ -1,70 +1,109 @@
-import React from 'react'
-import image from '../../src/image/Rectangle 3605.png'
-import underline from '../../src/image/hero-image.png'
-import image1 from '../../src/image/aboutma.webp'
-
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function About() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: "ease-out",
+    });
+  }, []);
+
   return (
-    <div className='h-[1000px] w-full  bg-gradient-to-r from-orange-100 to-orange-100'>
-      
-      <div className='w-[1110px]  ml-[85px]'><img src={underline} alt='hi'/></div>
-<div className='flex flex-row ml-[550px] gap-[10px] mt-[130px]'>
-  <div className='font-bold  text-blue-800 text-2xl'><h2>ABOUT</h2></div>
-  <div className='text-blue-600 font-semibold text-2xl'><h2>US</h2></div>
-  <div className=' mt-[15px]'><img src={image} alt=''/></div>
-</div>
-<div className='flex flex-row gap-[100px] mt-[-20px]'>
-  <div ><img src={image1} alt='' className='w-[350px] h-[350px] ml-[85px] '/></div>
-  <div className='flex flex-col gap-[70px] mt-[40px]'>
-  <span className='text-xs text-blue-600 font-montserrat cd frontend
-  npm start-[60px] w-[470px] '><p>MA Perfect Fix Technical LLC is a Dubai
-based technical services company
-specializing in luxury residential,
-commercial, and high-end property
-maintenance.</p></span>
-  <span className='text-xs text-blue-600 font-montserrat mt-[-40px] w-[470px] '><p>We deliver comprehensive, precision
-driven maintenance solutions for exclusive
-villas, premium apartments, offices, and
-commercial spaces, with a strong focus on
-reliability, discretion, and long-term asset
-protection.</p></span>
-  <span className='text-medium text-blue-600 font-bold mt-[-30px]'><h2>Our Mission</h2></span>
-  <span className='text-xs text-blue-600 font-montserrat w-[470px] mt-[-40px]'><p>Our approach combines expert
-engineering, preventive maintenance, and
-white-glove service standards to ensure
-properties operate flawlessly while
-preserving their value and aesthetics.</p></span>
-</div></div>
+    <section className="w-full bg-white py-16 sm:py-20 md:py-24 lg:py-28">
 
+      {/* ABOUT US TITLE */}
+      <div className="text-center mb-12 sm:mb-16">
+        <h2 data-aos="fade-up" className="text-3xl  mt-8 sm:text-4xl md:text-5xl font-bold text-blue-800">
+          ABOUT <span data-aos="fade-up" className="text-blue-700">US</span>
+        </h2>
+        <div className="w-16 sm:w-20 h-1 bg-blue-700 mx-auto mt-3 sm:mt-4"></div>
+      </div>
 
-<div>
-    <div className='flex flex-row  gap-[10px] ml-[85px] mt-[70px]'>
-  <div className='text-blue-600 font-semibold text-2xl'><h2>WHY</h2></div>
-  <div className='font-bold text-blue-600 text-2xl'><h2>CHOOSE US</h2></div>
-  <div className='mt-[15px]'><img src={image} alt=''/></div>
-  </div>
-</div>
+      {/* ABOUT CONTENT */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+        <p data-aos="fade-up" className="text-blue-700 text-base sm:text-lg md:text-xl leading-relaxed text-center mb-12 sm:mb-16">
+          <span data-aos="fade-up" className="font-semibold">MA Perfect Fix Technical LLC</span> is a
+          Dubai-based technical services company delivering premium maintenance
+          solutions for luxury residential and commercial properties. We
+          specialize in exclusive villas, high-end apartments, offices, and
+          commercial spaces, ensuring long-term value, reliability, and superior
+          craftsmanship.
+        </p>
 
-<div className='flex flex-row  '>
-<div className='flex flex-col mt-[30px] ml-[85px] border-2 border-gray-300 w-[350px] h-[250px]'>
-<div className='font-semibold text-blue-500 text-m mt-[60px] ml-[60px]'><h2>QUALITY ASSURANCE:</h2></div>
-<div className='text-xs text-blue-600 mt-[30px] ml-[60px] mr-[80px] '><p>We meticulously select and vet each product to ensure it meets our stringent quality standards.</p></div>
-</div>
-<div className='flex flex-col mt-[30px]  border-t-2 border-l-1 border-r-1 border-b-2 border-gray-300 w-[350px] h-[250px]'>
-  <div className='font-semibold text-blue-500 text-m mt-[60px] ml-[60px]'><h2>CONVENIENCE: </h2></div>
-  <div className='text-xs text-blue-600 mt-[30px] ml-[60px] mr-[80px] '><p>With our user-friendly interface and hassle-free ordering process, shopping has never been easier.</p></div>
-</div>
-<div className='flex flex-col mt-[30px] border-2 border-gray-300 w-[350px] h-[250px]'>
-<div className='font-semibold text-blue-500 text-m mt-[60px] ml-[60px]'><h2>EXCEPTIONAL CUSTOMER SERVICE:</h2></div>
-<div className='text-xs text-blue-600 mt-[30px] ml-[60px] mr-[80px] '><p>Our team of dedicated professionals is here to assist you the way, ensuring your satisfaction is our top priority.</p></div>
-</div>
+        {/* MISSION & VISION */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 mb-16 sm:mb-20">
+          <div data-aos="fade-up">
+            <h3 className="text-xl sm:text-2xl text-center md:text-left font-bold text-blue-800 mb-3 sm:mb-4">
+              Our Mission
+            </h3>
+            <p className="text-blue-700 text-base sm:text-lg leading-relaxed md:leading-7 text-center md:text-left">
+              To deliver world-class technical services through expert
+              engineering, preventive maintenance, and refined service
+              standards—ensuring properties operate flawlessly and retain their
+              value.
+            </p>
+          </div>
 
-</div>
+          <div data-aos="fade-up">
+            <h3 className="text-xl sm:text-2xl text-center md:text-left font-bold text-blue-800 mb-3 sm:mb-4">
+              Our Vision
+            </h3>
+            <p className="text-blue-700 text-base sm:text-lg leading-relaxed md:leading-7 text-center md:text-left">
+              To become a trusted leader in luxury property maintenance across
+              Dubai, recognized for quality, professionalism, and long-term
+              client partnerships.
+            </p>
+          </div>
+        </div>
 
+        {/* WHY CHOOSE US */}
+        <div className="text-center mb-10 sm:mb-12">
+          <h2 data-aos="fade-up" className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-800">
+            WHY <span data-aos="fade-up" className="text-blue-700">CHOOSE US</span>
+          </h2>
+          <div className="w-16 sm:w-20 h-1 bg-blue-700 mx-auto mt-3 sm:mt-4"></div>
+        </div>
 
-    </div>
-  )
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+          {/* CARD 1 */}
+          <div data-aos="fade-up" className="bg-[#0a1f44] text-center p-6 sm:p-8 rounded-xl shadow-lg">
+            <h4 className="font-semibold text-2xl sm:text-2xl text-blue-100 mb-3 sm:mb-4">
+              Premium Quality
+            </h4>
+            <p className="text-blue-50 text-base sm:text-lg leading-relaxed">
+              Strict quality controls and trusted materials ensure durable,
+              flawless results on every project.
+            </p>
+          </div>
+
+          {/* CARD 2 */}
+          <div data-aos="fade-up" className="bg-[#0a1f44] text-center p-6 sm:p-8 rounded-xl shadow-lg">
+            <h4 className="font-semibold text-2xl sm:text-2xl text-blue-100 mb-3 sm:mb-4">
+              Expert Team
+            </h4>
+            <p className="text-blue-50 text-base sm:text-lg leading-relaxed">
+              Skilled professionals trained to manage high-end properties with
+              precision and care.
+            </p>
+          </div>
+
+          {/* CARD 3 */}
+          <div data-aos="fade-up" className="bg-[#0a1f44] text-center p-6 sm:p-8 rounded-xl shadow-lg">
+            <h4 className="font-semibold text-2xl sm:text-2xl text-blue-100 mb-3 sm:mb-4">
+              Reliable Service
+            </h4>
+            <p className="text-blue-50 text-base sm:text-lg leading-relaxed">
+              Timely delivery, transparent communication, and customer-first
+              service you can trust.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export default About
+export default About;

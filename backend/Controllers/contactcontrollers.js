@@ -26,13 +26,16 @@ export const submitContactForm = async (req, res) => {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-  service: "gmail",
+   const transporter = nodemailer.createTransport({
+  host: "smtp.zoho.in",
+  port: 465,
+  secure: true, // true for 465, false for 587
   auth: {
     user: process.env.DEV_EMAIL,
     pass: process.env.DEV_EMAIL_PASSWORD,
   },
 });
+
 
     // Save to MongoDB
     const contact = new Contact({ firstName, lastName, email, phone, message });

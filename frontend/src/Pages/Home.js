@@ -1,207 +1,268 @@
-import React from "react";
-import {
-  FiTag,
-  FiBriefcase,
-  FiShield,
-  FiCheckSquare,
-} from "react-icons/fi";
-import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaGlobe,
-  FaInstagram,
-  FaFacebookF,
-} from "react-icons/fa";
-import img from "../image/last.new.jpg";
+import React, { useEffect, useState } from "react";
+import { FaPhoneAlt, FaEnvelope, FaGlobe } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
-/* Feature Card */
-const FeatureCard = ({ icon, title, text }) => (
-  <div className="bg-white border border-orange-300 p-6 shadow-lg text-center sm:text-left">
-    <div className="text-blue-700 text-xl mb-4 flex justify-center sm:justify-start">
-      {icon}
-    </div>
-    <h3 className="font-semibold text-blue-900 mb-2">{title}</h3>
-    <p className="text-blue-500 text-sm leading-relaxed">{text}</p>
-  </div>
-);
+/* Background Images */
+import bg1 from "../image/burj-khalifa-4922317_1280.jpg";
+import bg2 from "../image/dubai-6331310_1280.jpg";
+import bg3 from "../image/address4044183_1280.jpg";
+import solution from "../image/Solutions_You_Can_Trust-removebg-preview.png";
+import dubai from "../image/HH Al saud.png";
+
+import img from "../image/electricl.png";
+import img1 from "../image/HAVS.png";
+import img2 from "../image/smart homen.jpg";
+import img5 from "../image/ANNUAL MAINTANACEn.jpg";
+
+/* Slideshow images array */
+const bgImages = [bg1, bg2, bg3];
 
 /* Expertise Card */
 const ExpertiseCard = ({ title, text, bg }) => (
-  <div className={`${bg} px-8 py-14 text-center`}>
-    <h3 className="text-xl font-semibold text-blue-900 mb-4">{title}</h3>
-    <p className="text-blue-600 text-sm leading-relaxed">{text}</p>
+  <div data-aos="fade-up" className={`${bg} border border-blue-100 px-8 py-14 text-center`}>
+    <h3 className="text-xl font-semibold text-blue-100 mb-4">{title}</h3>
+    <p className="text-blue-50 text-sm leading-relaxed">{text}</p>
   </div>
 );
 
 const HomeSection = () => {
+  const [currentBg, setCurrentBg] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: "ease-out",
+    });
+  }, []);
+
+  /* Background slideshow effect */
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBg((prev) => (prev + 1) % bgImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const homeServices = [
+    {
+      title: "Mechanical, Electrical & Plumbing",
+      description: "Complete MEP solutions for luxury properties.",
+      image: img,
+    },
+    {
+      title: "HVAC Systems",
+      description: "Advanced heating, ventilation & air conditioning.",
+      image: img1,
+    },
+    {
+      title: "Smart Home Automation",
+      description: "Modern smart home & automation systems.",
+      image: img2,
+    },
+    {
+      title: "Annual Maintenance Contracts",
+      description: "Reliable AMC plans for worry-free maintenance.",
+      image: img5,
+    },
+  ];
+
   return (
-    <section className="w-full bg-orange-100 py-20">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="w-full h-full bg-white overflow-hidden">
 
-        {/* HERO SECTION */}
-        <div className="grid grid-cols-1 mt-10 lg:grid-cols-2 gap-16 items-center mb-28">
+      {/* ================= HERO SECTION ================= */}
+       <div className="relative h-screen">
+        {bgImages.map((img, i) => (
+          <div
+            key={i}
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+              i === currentBg ? "opacity-100" : "opacity-0"
+            }`}
+            style={{ backgroundImage: `url(${img})` }}
+          />
+        ))}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute top-0 left-0 w-72 h-72 bg-orange-200 rounded-full opacity-25 -translate-x-20 -translate-y-20"></div>
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-orange-300 rounded-full opacity-20 translate-x-20 translate-y-20"></div>
 
-          {/* LEFT CONTENT */}
-          <div className="text-center lg:text-left">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 leading-tight mb-6">
-              Professional <br />
-              maintenance <br />
-              solutions for <br />
-              <span className="capitalize">
-                Luxury properties in Dubai
-              </span>
-            </h1>
+        <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center">
 
-            <p className="text-blue-700 text-base sm:text-lg max-w-md mx-auto lg:mx-0 leading-relaxed">
-              Professional technical maintenance services tailored for villas,
-              premium apartments, offices, and commercial properties across Dubai,
-              delivered with reliability, precision, and expert care.
-            </p>
+           <h1  data-aos="fade-up" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-blue-100 leading-tight">
+            Professional Maintenance Solutions
+            <span className="block text-yellow-300 mt-2">
+              For Luxury Properties
+            </span>
+          </h1>
+          <p
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="text-blue-50 max-w-3xl mt-6 text-sm sm:text-base md:text-lg"
+          >
+            Professional technical maintenance services tailored for villas,
+            premium apartments, offices<br/> And commercial properties across UAE,
+            delivered with reliability and expert care.
+          </p>
 
-            <a
-              href="/services"
-              className="inline-block px-6 py-3 mt-8 border border-orange-700 rounded-full
-                         text-sm text-blue-700 font-medium hover:bg-blue-900 hover:text-white transition"
-            >
-              See More
-            </a>
-          </div>
-
-          {/* RIGHT FEATURES */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <FeatureCard
-              icon={<FiTag />}
-              title="Tailored Solutions"
-              text="Custom maintenance plans designed around your property’s unique requirements."
-            />
-            <FeatureCard
-              icon={<FiBriefcase />}
-              title="End-to-End Expertise"
-              text="From inspections to execution, we handle everything professionally."
-            />
-            <FeatureCard
-              icon={<FiShield />}
-              title="Preventive Protection"
-              text="Proactive maintenance that minimizes risks and unexpected costs."
-            />
-            <FeatureCard
-              icon={<FiCheckSquare />}
-              title="Accountability Assured"
-              text="Transparent processes, reporting, and dependable service delivery."
-            />
-          </div>
+          <button
+            data-aos="fade-up"
+            data-aos-delay="300"
+            onClick={() => navigate("/services")}
+            className="mt-8 px-8 py-3 rounded-full bg-yellow-400 text-blue-900 text-lg hover:bg-yellow-500 transition"
+          >
+            Book Service Now
+          </button>
         </div>
+      </div>
 
-        {/* WHO WE ARE */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-28">
-          <div className="flex justify-center">
-            <img
-              src={img}
-              alt="Who We Are"
-              className="rounded-lg shadow-lg max-w-md w-full"
-            />
-          </div>
-
-          <div className="text-center lg:text-left">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-              Who We Are
-            </h2>
-
-            <p className="text-blue-700 text-base sm:text-lg leading-relaxed mb-6 max-w-xl mx-auto lg:mx-0">
-              MA Perfect Fix Technical LLC is a Dubai-based technical services company
-              providing structured, preventive maintenance solutions for luxury
-              residential and commercial properties. We focus on reliability,
-              professional execution, and long-term asset protection.
-            </p>
-
-            <a
-              href="/about"
-              className="inline-block px-6 py-3 mt-4 border border-orange-700 rounded-full
-                         text-sm text-blue-700 font-medium hover:bg-blue-900 hover:text-white transition"
+      {/* ================= WHO WE ARE ================= */}
+      <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div data-aos="fade-up">
+          <h2 className="text-5xl font-bold text-blue-900 mb-6">Who We Are</h2>
+          <p className="text-blue-700 text-lg leading-relaxed mb-6">
+            MA Perfect Fix Technical Services LLC is a UAE-based company specializing in property maintenance and technical solutions. Our mission is to maintain the highest standards in every project we undertake.
+          </p>
+           <ul className="text-blue-600 space-y-2 font-medium">
+            <li>✔ High-quality workmanship</li>
+            <li>✔ Certified technicians</li>
+            <li>✔ Preventive maintenance</li>
+            <li>✔ Transparent service</li>
+          </ul>
+          <div className="mt-8">
+            <button
+              data-aos="fade-up"
+              onClick={() => navigate("/about")}
+              className="inline-block px-7 py-3 bg-yellow-300 border border-orange-600 rounded-full text-sm text-blue-700 hover:bg-yellow-600 hover:text-white transition"
             >
               Learn More
-            </a>
+            </button>
           </div>
         </div>
 
-        {/* EXPERTISE HEADER */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-4">
-            Explore Our Expertise
-          </h2>
-          <p className="text-blue-700 max-w-2xl mx-auto">
-            Tailored maintenance services designed to protect and enhance your property value.
+        <div data-aos="fade-up" data-aos-delay="200">
+          <h2 className="text-5xl font-bold text-blue-900 mb-6">What We Do</h2>
+          <p className="text-blue-700 text-lg leading-relaxed mb-20">
+            We provide professional technical maintenance services covering MEP,
+            HVAC systems, smart home automation, interior & exterior works,
+            pools, safety systems, and utilities.
+          </p>
+        </div>
+      </div>
+
+      {/* ================= INSPIRED & DRIVEN ================= */}
+      <div className="max-w-7xl mx-auto px-6 py-16 text-center" data-aos="fade-up">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900 mb-10">
+          Inspired by Leadership <br /> Driven by Excellence
+        </h2>
+      </div>
+
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-8">
+        <img
+          data-aos="fade-up"
+          src={dubai}
+          alt="hi"
+          className=" block w-48 sm:w-56 md:w-64 lg:w-72 ml-0 lg:ml-10 rounded-lg"
+        />
+        <div data-aos="fade-up" className="flex flex-col lg:mx-20">
+          <p className="text-blue-700 text-lg leading-relaxed">
+            We are inspired by visionary leadership, integrity, and excellence—values long associated with the distinguished legacy of HH Prince Turki Abdulaziz Faisal Al Saud.
+          </p>
+          <p className="text-blue-700 text-lg leading-relaxed mb-20">
+            These principles guide our commitment to delivering premium technical services with professionalism, precision, and trust.
+          </p>
+        </div>
+      </div>
+
+      {/* ================= SERVICES ================= */}
+      <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {homeServices.map((service, index) => (
+          <div
+            key={index}
+            onClick={() => navigate("/services")}
+            data-aos="fade-up"
+            data-aos-delay={index * 200}
+            className="cursor-pointer bg-[#0a1f44] rounded-xl overflow-hidden hover:scale-105 transition"
+          >
+            <img
+              src={service.image}
+              alt={service.title}
+              className="h-48 w-full object-cover group-hover:scale-105 transition duration-500"
+            />
+            <div className="p-6 bg-[#0a1f44] text-center">
+              <h3 className="text-lg font-semibold text-blue-100 mb-2">{service.title}</h3>
+              <p className="text-blue-50 text-sm">{service.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="text-center mb-20" data-aos="fade-up">
+        <button
+          onClick={() => navigate("/services")}
+          className="px-9 py-3 rounded-full bg-yellow-400 text-[#0a1f44] font-semibold hover:bg-yellow-500 hover:text-white transition"
+        >
+          View All Services
+        </button>
+      </div>
+
+      {/* ================= WHY US ================= */}
+      <div className="text-center mb-16" data-aos="fade-up">
+        <h2 className="text-5xl font-bold text-blue-900 mb-4">WHY US</h2>
+        <p className="text-blue-700 text-lg max-w-2xl mx-auto">
+          White-glove service, end-to-end technical expertise, and preventive
+          asset protection tailored for high-end properties.
+        </p>
+      </div>
+
+      <div className="max-w-7xl  mx-auto px-6 py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <ExpertiseCard
+          title="WHITE GLOVE SERVICE"
+          text="Discreet, clean, and minimally disruptive maintenance for luxury properties."
+          bg="bg-[#0a1f44]"
+        />
+        <ExpertiseCard
+          title="END-TO-END EXPERTISE"
+          text="MEP, HVAC, smart systems, and specialist maintenance under one roof."
+          bg="bg-[#0a1f44]"
+        />
+        <ExpertiseCard
+          title="PREVENTIVE PROTECTION"
+          text="Proactive inspections to reduce failures and preserve asset value."
+          bg="bg-[#0a1f44]"
+        />
+      </div>
+
+      {/* ================= SOLUTION IMAGE DIVIDER ================= */}
+<div className="flex justify-center leading-none" data-aos="fade-up">
+  <img
+    src={solution}
+    alt="Solutions You Can Trust"
+    className="block w-46 sm:w-62 md:w-86 lg:w-[420px]"
+  />
+</div>
+
+
+      {/* ================= CONTACT ================= */}
+      <div className="bg-[#0a1f44] py-16 text-center mt-20 rounded-xl shadow-lg mb-4" data-aos="fade-up">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-blue-100 mb-6">Get in Touch</h2>
+          <p className="text-blue-50">
+            Have a question or need professional maintenance services?
           </p>
         </div>
 
-        {/* EXPERTISE GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-28">
-          <ExpertiseCard
-            title="Safety"
-            text="Thorough safety inspections to identify and eliminate potential risks."
-            bg="bg-orange-100"
-          />
-          <ExpertiseCard
-            title="Utilities"
-            text="Efficient utilities management for residential and commercial properties."
-            bg="bg-orange-200"
-          />
-          <ExpertiseCard
-            title="Energy"
-            text="Optimized energy systems to reduce costs and improve sustainability."
-            bg="bg-orange-100"
-          />
+         <div className="flex flex-col sm:flex-row justify-center gap-6 text-blue-50">
+          <div className="flex items-center gap-3 justify-center"><FaPhoneAlt /> +971 55 789 3945</div>
+          <div className="flex items-center gap-3 justify-center"><FaEnvelope /> contact@maperfectfix.com</div>
+          <div className="flex items-center gap-3 justify-center"><FaGlobe /> www.maperfectfix.com</div>
         </div>
-
-        {/* CONTACT SECTION */}
-        <div className="bg-orange-50 border border-orange-300 rounded-xl shadow-lg px-8 py-14">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-blue-900 mb-4">
-              Get in Touch
-            </h2>
-            <p className="text-blue-600 max-w-2xl mx-auto leading-relaxed">
-              Have a question or need professional maintenance services?
-              Reach out to us and our team will respond promptly.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center md:text-left">
-            <div className="space-y-6">
-              <div className="flex items-center justify-center md:justify-start gap-4">
-                <FaPhoneAlt className="text-blue-800" />
-                <span className="text-blue-700">+971 55 789 3945</span>
-              </div>
-
-              <div className="flex items-center justify-center md:justify-start gap-4">
-                <FaEnvelope className="text-blue-800" />
-                <span className="text-blue-700">ashokbekalfort@yahoo.com</span>
-              </div>
-
-              <div className="flex items-center justify-center md:justify-start gap-4">
-                <FaGlobe className="text-blue-800" />
-                <span className="text-blue-700">www.forever.com</span>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-blue-900 mb-6">
-                Follow Us
-              </h3>
-              <div className="flex justify-center md:justify-start gap-6">
-                <a href="https://facebook.com" className="text-blue-800 text-xl hover:text-blue-500">
-                  <FaFacebookF />
-                </a>
-                <a href="https://instagram.com" className="text-blue-800 text-xl hover:text-pink-600">
-                  <FaInstagram />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
+
     </section>
   );
 };
 
 export default HomeSection;
+
