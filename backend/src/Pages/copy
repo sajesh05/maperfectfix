@@ -1,0 +1,12 @@
+const servicesData = [
+  { title: "Mechanical, Electrical, and Plumbing (MEP)", description: "Comprehensive MEP services ensuring the seamless operation of mechanical, electrical, and plumbing systems.", image: img },
+  { title: "Heating, Ventilation, and Air Conditioning (HVAC)", description: "Expert HVAC solutions that maintain optimal indoor climate control.", image: img1 },
+  { title: "Smart Home and Automation", description: "Advanced smart home integrations and automation systems.", image: img2 },
+  { title: "Luxury Interiors and Finishes Care", description: "Dedicated care for luxury interiors and finishes.", image: img3 },
+  { title: "Kitchen, Appliances, and Utilities", description: "Maintenance and servicing of kitchen appliances and utilities.", image: img4 },
+  { title: "Annual Maintenance Contracts (AMC)", description: "Tailored AMC plans offering consistent, reliable maintenance support.", image: img5 },
+  { title: "Energy, Sustainability, and Efficiency", description: "Sustainable energy solutions aimed at reducing environmental impact.", image: img6 },
+  // { title: "Elite Client Experience", description: "Premium, personalized service focused on delivering an elite client experience.", image: img7 },
+  { title: "Exterior, Structural, and Civil Works", description: "Robust exterior, structural, and civil maintenance for your property.", image: img8 },
+  // { title: "Swimming Pools, Water Features, and Landscaping", description: "Expert care and maintenance of swimming pools, water features, and landscaping.", image: img9 },
+];
